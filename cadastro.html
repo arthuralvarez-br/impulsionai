@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecionando para Cadastro...</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
+            color: white; 
+            text-align: center; 
+            padding: 50px; 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            flex-direction: column; 
+        }
+        .loading { font-size: 1.5rem; margin-bottom: 20px; }
+        .spinner { border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+    <script>
+        // Redireciona automaticamente em 2 segundos
+        setTimeout(function() {
+            window.location.href = "https://forms.gle/Foun6TZexVv2Bq9E8";
+        }, 2000 );
+    </script>
+</head>
+<body>
+    <div>
+        <h1>🚀 ImpulsionAI</h1>
+        <div class="loading">Redirecionando para o cadastro...</div>
+        <div class="spinner"></div>
+        <p>Se não redirecionar automaticamente, <a href="https://forms.gle/Foun6TZexVv2Bq9E8" style="color: #FFD700;">clique aqui</a></p>
+    </div>
+</body>
+</html>
