@@ -35,12 +35,13 @@ jobs:
         run: python update_newsletter.py
 
       # --- CORREÇÃO APLICADA AQUI ---
-      # Passo 5: Salva as alterações (Commit & Push) usando uma Action robusta
+     # Passo 5: Força a adição do arquivo para o commit
+      - name: Adicionar arquivo para commit
+        run: git add newsletter.html
+
+      # Passo 6: Faz o commit e push das alterações
       - name: Commit e Push das alterações
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          # Mensagem que aparecerá no histórico do GitHub
-          commit_message: "📰 [Bot] Atualiza newsletter da semana"
-          # O arquivo específico que queremos salvar.
-          # Se houver mudanças, ele salva. Se não, ele não faz nada.
-          file_pattern: newsletter.html
+          commit_message: "📰 [Bot] Força atualização da newsletter"
+          # Não especificamos mais o file_pattern, pois já adicionamos o arquivo manualmente
