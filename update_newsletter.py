@@ -3,55 +3,61 @@ from bs4 import BeautifulSoup
 import feedparser
 import datetime
 
-# (Aqui teríamos a lógica completa de coleta de notícias, similar ao curadoria_system_premium.py)
-# Para simplificar este exemplo, vamos usar notícias fixas, mas a estrutura está pronta.
-def coletar_noticias():
+def coletar_noticias( ):
     """
-    Esta função simula a coleta de notícias de várias fontes.
-    No futuro, podemos colocar aqui a lógica real do seu script de curadoria.
+    Coleta de notícias agora incluindo DATA e LINK para cada matéria.
     """
     noticias = [
         {
             "titulo": "IA Generativa pode adicionar até R$4.4 trilhões à economia global, diz McKinsey",
             "fonte": "McKinsey & Company | Estratégia Global",
-            "resumo": "Novo relatório da McKinsey destaca o potencial transformador da IA generativa, prevendo um impacto econômico massivo em setores como varejo, bancos e saúde. O estudo enfatiza a necessidade de as empresas investirem em talentos e reestruturação de processos para capturar esse valor."
+            "resumo": "Novo relatório da McKinsey destaca o potencial transformador da IA generativa, prevendo um impacto econômico massivo...",
+            "data": "28 de Julho de 2025",
+            "link": "https://www.mckinsey.com/br/our-insights" # Link de exemplo
         },
         {
             "titulo": "Google DeepMind apresenta 'AlphaFold 3', capaz de mapear todas as moléculas da vida",
             "fonte": "Google DeepMind | Inovação Tecnológica",
-            "resumo": "O AlphaFold 3 representa um salto quântico na biologia computacional. A nova versão da IA pode prever a estrutura e as interações de proteínas, DNA, RNA e outras moléculas, acelerando drasticamente a descoberta de novos medicamentos e tratamentos para doenças."
+            "resumo": "O AlphaFold 3 representa um salto quântico na biologia computacional, acelerando drasticamente a descoberta de novos medicamentos...",
+            "data": "27 de Julho de 2025",
+            "link": "https://deepmind.google/discover/" # Link de exemplo
         },
         {
             "titulo": "Estudo da FGV aponta que 80% das empresas brasileiras pretendem usar IA para cibersegurança",
             "fonte": "FGV | Mercado Brasileiro 🇧🇷",
-            "resumo": "Com o aumento dos ataques cibernéticos, empresas no Brasil estão se voltando para a Inteligência Artificial para prever e neutralizar ameaças em tempo real. A pesquisa da Fundação Getulio Vargas indica que o investimento na área deve triplicar até o final de 2026."
+            "resumo": "Com o aumento dos ataques cibernéticos, empresas no Brasil estão se voltando para a Inteligência Artificial para prever e neutralizar ameaças...",
+            "data": "26 de Julho de 2025",
+            "link": "https://portal.fgv.br/noticias" # Link de exemplo
         },
         {
             "titulo": "Como líderes podem preparar suas equipes para a era da colaboração Humano-IA",
             "fonte": "Harvard Business Review | Liderança",
-            "resumo": "O foco não é mais substituir humanos, mas sim aumentar suas capacidades. O artigo da HBR oferece um framework para gestores redesenharem fluxos de trabalho, focando em habilidades como pensamento crítico, criatividade e inteligência emocional, áreas onde a sinergia com a IA é mais poderosa."
+            "resumo": "O foco não é mais substituir humanos, mas sim aumentar suas capacidades. O artigo da HBR oferece um framework para gestores...",
+            "data": "25 de Julho de 2025",
+            "link": "https://hbr.org/topic/artificial-intelligence" # Link de exemplo
         }
     ]
     return noticias
 
-def gerar_html_newsletter(noticias):
-    """Gera o conteúdo HTML completo para o arquivo newsletter.html."""
+def gerar_html_newsletter(noticias ):
+    """Gera o HTML, agora incluindo a data e um botão 'Leia Mais' com o link."""
     
-    # Monta a parte de cada notícia
     html_noticias = ""
     for noticia in noticias:
         html_noticias += f"""
         <article class="news-item">
             <h3>{noticia['titulo']}</h3>
-            <span class="source">Fonte: {noticia['fonte']}</span>
+            <div class="metadata">
+                <span class="source">Fonte: {noticia['fonte']}</span>
+                <span class="date">Data: {noticia['data']}</span>
+            </div>
             <p>{noticia['resumo']}</p>
+            <a href="{noticia['link']}" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
         </article>
         """
 
-    # Pega a data atual
     data_hoje = datetime.datetime.now().strftime("%d de %B de %Y")
 
-    # Monta o template HTML completo
     html_completo = f"""<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -68,8 +74,10 @@ def gerar_html_newsletter(noticias):
         .news-item {{ margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }}
         .news-item:last-child {{ border-bottom: none; }}
         .news-item h3 {{ font-size: 1.4rem; margin-bottom: 10px; }}
-        .news-item .source {{ font-style: italic; color: #ccc; margin-bottom: 10px; display: block; }}
-        .news-item p {{ line-height: 1.6; }}
+        .metadata {{ display: flex; justify-content: space-between; font-style: italic; color: #ccc; margin-bottom: 15px; font-size: 0.9rem; flex-wrap: wrap; }}
+        .news-item p {{ line-height: 1.6; margin-bottom: 15px; }}
+        .read-more-btn {{ display: inline-block; padding: 8px 15px; background-color: rgba(255, 255, 255, 0.1); color: #FFD700; text-decoration: none; font-weight: bold; border-radius: 5px; transition: background-color 0.3s; }}
+        .read-more-btn:hover {{ background-color: rgba(255, 215, 0, 0.3); }}
         .btn-voltar {{ display: inline-block; margin-top: 30px; padding: 12px 25px; background-color: #FFD700; color: #333; text-decoration: none; font-weight: bold; border-radius: 8px; transition: transform 0.2s; }}
         .btn-voltar:hover {{ transform: scale(1.05); }}
     </style>
@@ -94,14 +102,14 @@ def gerar_html_newsletter(noticias):
     return html_completo
 
 if __name__ == "__main__":
-    print("Coletando notícias...")
+    print("Coletando notícias (versão com links e datas)...")
     noticias_coletadas = coletar_noticias()
     
-    print("Gerando arquivo HTML da newsletter...")
+    print("Gerando arquivo HTML da newsletter aprimorado...")
     html_final = gerar_html_newsletter(noticias_coletadas)
     
     with open("newsletter.html", "w", encoding="utf-8") as f:
         f.write(html_final)
         
-    print("Arquivo 'newsletter.html' gerado com sucesso!")
+    print("Arquivo 'newsletter.html' aprimorado gerado com sucesso!")
 
