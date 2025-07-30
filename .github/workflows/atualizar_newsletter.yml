@@ -1,6 +1,8 @@
 # Nome do nosso fluxo de trabalho (automação)
 name: Atualizar Newsletter Semanal
-
+# Adicionado para dar permissão de escrita ao robô
+permissions:
+  contents: write
 # Gatilhos: O que faz a automação rodar?
 on:
   workflow_dispatch:
