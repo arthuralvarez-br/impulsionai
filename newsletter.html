@@ -5,111 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Newsletter Atual - ImpulsionAI</title>
     <style>
-        /* Estilos (os mesmos da home para manter a consistência) */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        header p {
-            font-size: 1.2rem;
-            color: #ddd;
-        }
-        .newsletter-content h2 {
-            color: #FFD700; /* Dourado para destaque */
-            border-bottom: 2px solid #FFD700;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .news-item {
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        .news-item:last-child {
-            border-bottom: none;
-        }
-        .news-item h3 {
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-        }
-        .news-item .source {
-            font-style: italic;
-            color: #ccc;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .news-item p {
-            line-height: 1.6;
-        }
-        .btn-voltar {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background-color: #FFD700;
-            color: #333;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 8px;
-            transition: transform 0.2s;
-        }
-        .btn-voltar:hover {
-            transform: scale(1.05);
-        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin: 0; padding: 20px; }
+        .container { max-width: 800px; margin: 0 auto; background-color: rgba(0, 0, 0, 0.2); padding: 30px; border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); }
+        header { text-align: center; margin-bottom: 40px; }
+        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        header p { font-size: 1.2rem; color: #ddd; }
+        .newsletter-content h2 { color: #FFD700; border-bottom: 2px solid #FFD700; padding-bottom: 10px; margin-bottom: 20px; }
+        .news-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
+        .news-item:last-child { border-bottom: none; }
+        .news-item h3 { font-size: 1.4rem; margin-bottom: 10px; }
+        .metadata { display: flex; justify-content: space-between; font-style: italic; color: #ccc; margin-bottom: 15px; font-size: 0.9rem; flex-wrap: wrap; }
+        .news-item p { line-height: 1.6; margin-bottom: 15px; }
+        .read-more-btn { display: inline-block; padding: 8px 15px; background-color: rgba(255, 255, 255, 0.1); color: #FFD700; text-decoration: none; font-weight: bold; border-radius: 5px; transition: background-color 0.3s; }
+        .read-more-btn:hover { background-color: rgba(255, 215, 0, 0.3); }
+        .btn-voltar { display: inline-block; margin-top: 30px; padding: 12px 25px; background-color: #FFD700; color: #333; text-decoration: none; font-weight: bold; border-radius: 8px; transition: transform 0.2s; }
+        .btn-voltar:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
-
     <div class="container">
         <header>
             <h1>🚀 ImpulsionAI</h1>
-            <p>Sua newsletter semanal de IA para líderes brasileiros.</p>
+            <p>Sua newsletter semanal de IA para líderes brasileiros. Atualizada em: 04 de August de 2025</p>
         </header>
-
         <section class="newsletter-content">
             <h2>Newsletter da Semana</h2>
-
-            <article class="news-item">
-                <h3>Accenture revela que 95% dos líderes brasileiros planejam investir em IA até 2026</h3>
-                <span class="source">Fonte: Accenture Brasil | Foco: Mercado Brasileiro 🇧🇷</span>
-                <p>Pesquisa da Accenture com 500 executivos C-level no Brasil mostra um otimismo recorde com a Inteligência Artificial. Os principais focos de investimento serão em automação de processos, análise de dados e experiência do cliente. O estudo aponta que empresas que não adotarem IA nos próximos 2 anos podem perder até 30% de sua competitividade.</p>
-            </article>
-
-            <article class="news-item">
-                <h3>The State of AI in 2025: McKinsey Global Survey</h3>
-                <span class="source">Fonte: McKinsey & Company | Foco: Estratégia Global</span>
-                <p>A pesquisa global da McKinsey revela que a adoção de IA generativa dobrou no último ano. Os desafios, no entanto, persistem: 65% dos entrevistados citam a falta de talentos qualificados e 40% apontam para a dificuldade em medir o ROI (Retorno sobre Investimento) como as principais barreiras para a implementação em larga escala.</p>
-            </article>
-
-            <article class="news-item">
-                <h3>Como a IA está transformando o desenvolvimento de estratégias para executivos</h3>
-                <span class="source">Fonte: Harvard Business Review | Foco: Liderança</span>
-                <p>Artigo da HBR detalha como CEOs estão utilizando plataformas de IA para simular cenários de mercado, identificar riscos ocultos e acelerar a tomada de decisão. A ferramenta permite analisar milhões de variáveis em tempo real, algo impossível para equipes humanas, oferecendo uma vantagem competitiva sem precedentes.</p>
-            </article>
-
+            
+        <article class="news-item">
+            <h3>IA Generativa pode adicionar até R$4.4 trilhões à economia global, diz McKinsey</h3>
+            <div class="metadata">
+                <span class="source">Fonte: McKinsey & Company | Estratégia Global</span>
+                <span class="date">Data: 28 de Julho de 2025</span>
+            </div>
+            <p>Novo relatório da McKinsey destaca o potencial transformador da IA generativa, prevendo um impacto econômico massivo...</p>
+            <a href="https://www.mckinsey.com/br/our-insights" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
+        </article>
+        
+        <article class="news-item">
+            <h3>Google DeepMind apresenta 'AlphaFold 3', capaz de mapear todas as moléculas da vida</h3>
+            <div class="metadata">
+                <span class="source">Fonte: Google DeepMind | Inovação Tecnológica</span>
+                <span class="date">Data: 27 de Julho de 2025</span>
+            </div>
+            <p>O AlphaFold 3 representa um salto quântico na biologia computacional, acelerando drasticamente a descoberta de novos medicamentos...</p>
+            <a href="https://deepmind.google/discover/" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
+        </article>
+        
+        <article class="news-item">
+            <h3>Estudo da FGV aponta que 80% das empresas brasileiras pretendem usar IA para cibersegurança</h3>
+            <div class="metadata">
+                <span class="source">Fonte: FGV | Mercado Brasileiro 🇧🇷</span>
+                <span class="date">Data: 26 de Julho de 2025</span>
+            </div>
+            <p>Com o aumento dos ataques cibernéticos, empresas no Brasil estão se voltando para a Inteligência Artificial para prever e neutralizar ameaças...</p>
+            <a href="https://portal.fgv.br/noticias" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
+        </article>
+        
+        <article class="news-item">
+            <h3>Como líderes podem preparar suas equipes para a era da colaboração Humano-IA</h3>
+            <div class="metadata">
+                <span class="source">Fonte: Harvard Business Review | Liderança</span>
+                <span class="date">Data: 25 de Julho de 2025</span>
+            </div>
+            <p>O foco não é mais substituir humanos, mas sim aumentar suas capacidades. O artigo da HBR oferece um framework para gestores...</p>
+            <a href="https://hbr.org/topic/artificial-intelligence" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
+        </article>
+        
             <div style="text-align: center;">
                 <a href="home.html" class="btn-voltar">⬅️ Voltar para a Página Inicial</a>
             </div>
         </section>
     </div>
-
 </body>
 </html>
