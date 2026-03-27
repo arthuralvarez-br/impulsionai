@@ -3,17 +3,496 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ImpulsionAI - Newsletter de IA para Líderes Brasileiros</title>
+    <title>ImpulsionAI — O que a IA muda para quem lidera</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ink: #0a0a0f;
+            --paper: #f5f0e8;
+            --gold: #c9a84c;
+            --gold-light: #e8d49a;
+            --accent: #1a1a2e;
+            --muted: #6b6b6b;
+            --white: #ffffff;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
+
+        /* ── HERO ── */
+        .hero {
             min-height: 100vh;
-            color: white;
+            background: var(--ink);
+            display: grid;
+            grid-template-rows: auto 1fr auto;
+            position: relative;
+            overflow: hidden;
         }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -20%;
+            width: 700px; height: 700px;
+            background: radial-gradient(circle, rgba(201,168,76,0.10) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 28px 60px;
+            border-bottom: 1px solid rgba(201,168,76,0.15);
+            position: relative; z-index: 10;
+        }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); }
+        .logo span { color: var(--gold); }
+        .nav-tag { font-size: 0.73rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
+
+        .hero-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 60px 80px;
+            position: relative; z-index: 10;
+        }
+        .edition-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.72rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+        .edition-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6.5vw, 6rem);
+            font-weight: 900;
+            color: var(--white);
+            line-height: 1.02;
+            letter-spacing: -0.02em;
+            max-width: 800px;
+            margin-bottom: 28px;
+        }
+        h1 em { font-style: italic; color: var(--gold); }
+
+        .hero-desc {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.52);
+            max-width: 540px;
+            line-height: 1.75;
+            font-weight: 300;
+            margin-bottom: 48px;
+        }
+
+        .cta-group { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--gold); color: var(--ink);
+            padding: 15px 30px; border-radius: 4px;
+            font-size: 0.88rem; font-weight: 600;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(201,168,76,0.28); }
+
+        .btn-secondary {
+            display: inline-flex; align-items: center; gap: 10px;
+            color: rgba(255,255,255,0.65);
+            padding: 15px 20px;
+            font-size: 0.88rem; font-weight: 400;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.18);
+            transition: all 0.25s ease;
+        }
+        .btn-secondary:hover { color: var(--white); border-color: var(--gold); }
+
+        .hero-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            padding: 30px 60px;
+            position: relative; z-index: 10;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .stats-row { display: flex; gap: 44px; }
+        .stat-num { font-family: 'Playfair Display', serif; font-size: 1.9rem; font-weight: 700; color: var(--gold); line-height: 1; }
+        .stat-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 4px; }
+        .scroll-hint { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.22); display: flex; align-items: center; gap: 8px; }
+        .scroll-hint::after { content: '↓'; animation: bounce 1.8s infinite; }
+        @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(4px); } }
+
+        /* ── PARA QUEM É ── */
+        .audience-section {
+            background: var(--gold);
+            padding: 72px 60px;
+        }
+        .audience-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .audience-text h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--ink); margin-bottom: 16px; line-height: 1.15; }
+        .audience-text p { font-size: 0.95rem; color: rgba(10,10,15,0.65); line-height: 1.75; }
+        .audience-list { display: flex; flex-direction: column; gap: 14px; }
+        .audience-item {
+            display: flex; align-items: flex-start; gap: 14px;
+            background: rgba(10,10,15,0.07);
+            padding: 16px 20px; border-radius: 4px;
+        }
+        .audience-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+        .audience-item-text { font-size: 0.88rem; color: rgba(10,10,15,0.75); line-height: 1.5; }
+        .audience-item-text strong { display: block; font-size: 0.92rem; color: var(--ink); margin-bottom: 2px; }
+
+        /* ── SECTIONS ── */
+        .section { padding: 90px 60px; }
+        .section-header { display: flex; align-items: baseline; gap: 18px; margin-bottom: 56px; padding-bottom: 18px; border-bottom: 1px solid rgba(0,0,0,0.09); }
+        .section-num { font-family: 'Playfair Display', serif; font-size: 0.82rem; color: var(--gold); letter-spacing: 0.1em; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--ink); }
+
+        /* ── PREVIEW ── */
+        .preview-section { background: var(--paper); }
+        .news-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.07); border: 1px solid rgba(0,0,0,0.07); }
+        .news-card { background: var(--white); padding: 32px; transition: all 0.3s ease; }
+        .news-card:hover { background: var(--ink); }
+        .news-card:hover .news-card-tag { background: rgba(201,168,76,0.15); color: var(--gold); }
+        .news-card:hover .news-card-title { color: var(--white); }
+        .news-card:hover .news-card-body { color: rgba(255,255,255,0.6); }
+        .news-card:hover .news-card-source { color: rgba(255,255,255,0.25); border-color: rgba(255,255,255,0.08); }
+        .news-card-tag { display: inline-block; font-size: 0.67rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 500; background: rgba(0,0,0,0.06); color: var(--muted); padding: 3px 9px; border-radius: 2px; margin-bottom: 14px; transition: all 0.3s; }
+        .news-card-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 10px; transition: color 0.3s; }
+        .news-card-body { font-size: 0.86rem; color: var(--muted); line-height: 1.65; transition: color 0.3s; }
+        .news-card-source { display: block; font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(0,0,0,0.28); margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.07); transition: all 0.3s; }
+        .news-card.featured { grid-column: span 2; display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; }
+        .news-card.featured .news-card-title { font-size: 1.6rem; }
+
+        /* ── COMO FUNCIONA ── */
+        .how-section { background: var(--ink); }
+        .how-section .section-title { color: var(--white); }
+        .how-section .section-num { color: var(--gold); }
+        .how-section .section-header { border-color: rgba(255,255,255,0.07); }
+        .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); }
+        .step { background: var(--ink); padding: 44px 32px; }
+        .step-number { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; color: rgba(201,168,76,0.12); line-height: 1; margin-bottom: 20px; }
+        .step-title { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); margin-bottom: 10px; }
+        .step-body { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; }
+
+        /* ── CADASTRO ── */
+        .register-section { background: var(--gold); padding: 90px 60px; text-align: center; }
+        .register-section h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 900; color: var(--ink); margin-bottom: 14px; }
+        .register-section > p { font-size: 1rem; color: rgba(10,10,15,0.6); margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .benefits { display: flex; gap: 28px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+        .benefit-item { display: flex; align-items: center; gap: 9px; font-size: 0.88rem; color: rgba(10,10,15,0.72); font-weight: 500; }
+        .benefit-icon { font-size: 1.05rem; }
+        .register-btn {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--ink); color: var(--white);
+            padding: 18px 44px; border-radius: 4px;
+            font-size: 0.92rem; font-weight: 600;
+            letter-spacing: 0.06em; text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .register-btn:hover { background: var(--accent); transform: translateY(-3px); box-shadow: 0 18px 48px rgba(10,10,15,0.22); }
+        .register-note { margin-top: 14px; font-size: 0.78rem; color: rgba(10,10,15,0.38); }
+
+        /* ── ECOSSISTEMA ── */
+        .eco-section { background: var(--ink); padding: 90px 60px; }
+        .eco-inner { max-width: 1000px; margin: 0 auto; }
+        .eco-header { text-align: center; margin-bottom: 56px; }
+        .eco-label { font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+        .eco-header h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--white); margin: 14px 0 12px; line-height: 1.2; }
+        .eco-header p { font-size: 0.92rem; color: rgba(255,255,255,0.38); max-width: 500px; margin: 0 auto; line-height: 1.7; }
+        .eco-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(255,255,255,0.05); margin-bottom: 40px; }
+        .eco-card { background: var(--ink); padding: 32px 28px; transition: background 0.25s; }
+        .eco-card:hover { background: rgba(201,168,76,0.06); }
+        .eco-card-icon { font-size: 1.4rem; display: block; margin-bottom: 14px; }
+        .eco-card h3 { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); margin-bottom: 8px; font-weight: 700; }
+        .eco-card p { font-size: 0.82rem; color: rgba(255,255,255,0.36); line-height: 1.65; }
+        .eco-footer-note { text-align: center; font-size: 0.78rem; color: rgba(255,255,255,0.22); }
+        .eco-footer-note a { color: var(--gold); text-decoration: none; opacity: 0.8; }
+        .eco-footer-note a:hover { opacity: 1; }
+
+        /* ── FOOTER ── */
+        footer { background: var(--ink); padding: 44px 60px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(201,168,76,0.12); }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--white); }
+        .footer-logo span { color: var(--gold); }
+        .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.22); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            nav, .hero-body, .hero-footer, .section, .register-section, .audience-section { padding-left: 22px; padding-right: 22px; }
+            h1 { font-size: 2.6rem; }
+            .stats-row { gap: 20px; }
+            .audience-inner { grid-template-columns: 1fr; gap: 36px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .news-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .eco-cards { grid-template-columns: 1fr; }
+            .eco-section { padding-left: 22px; padding-right: 22px; }
+            footer { flex-direction: column; gap: 14px; text-align: center; }
+            .hero-footer { flex-direction: column; gap: 22px; align-items: flex-start; }
+        }
+
+        .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+        .fade-in.visible { opacity: 1; transform: none; }
+    </style>
+</head>
+<body>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+    <nav>
+        <div class="logo">Impulsion<span>AI</span></div>
+        <span class="nav-tag">Newsletter Semanal · IA para Líderes</span>
+    </nav>
+
+    <div class="hero-body">
+        <span class="edition-tag">Para gestores, profissionais liberais e líderes · toda quinta</span>
+        <h1>O que a IA muda<br>para quem <em>lidera.</em></h1>
+        <p class="hero-desc">
+            Você não precisa ser de TI para entender o que está acontecendo. A ImpulsionAI traduz os movimentos das Big Techs em linguagem de gestão, decisão e liderança. Toda semana, em 5 minutos.
+        </p>
+        <div class="cta-group">
+            <a href="cadastro.html" class="btn-primary">
+                <span>→</span> Cadastrar-se gratuitamente
+            </a>
+            <a href="newsletter.html" class="btn-secondary">
+                Ver edição atual ↗
+            </a>
+        </div>
+    </div>
+
+    <div class="hero-footer">
+        <div class="stats-row">
+            <div class="stat">
+                <div class="stat-num">210+</div>
+                <div class="stat-label">líderes no grupo</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">100%</div>
+                <div class="stat-label">em português</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">Quinta</div>
+                <div class="stat-label">toda semana</div>
+            </div>
+            <div class="stat">
+                <div class="stat-num">Gratuita</div>
+                <div class="stat-label">sem custo</div>
+            </div>
+        </div>
+        <span class="scroll-hint">Para quem é</span>
+    </div>
+</section>
+
+<!-- ══ PARA QUEM É ══ -->
+<section class="audience-section">
+    <div class="audience-inner">
+        <div class="audience-text">
+            <h2>Não é para desenvolvedores.<br>É para líderes.</h2>
+            <p>
+                A IA está mudando como se decide, como se gerencia equipes, como se planeja e como se compete. Você não precisa entender o código por trás disso. Precisa entender o impacto.
+            </p>
+        </div>
+        <div class="audience-list fade-in">
+            <div class="audience-item">
+                <span class="audience-icon">🏢</span>
+                <div class="audience-item-text">
+                    <strong>Gestores públicos e privados</strong>
+                    Que tomam decisões e precisam entender o que muda no seu setor.
+                </div>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon">⚖️</span>
+                <div class="audience-item-text">
+                    <strong>Profissionais liberais e autônomos</strong>
+                    Advogados, médicos, consultores, educadores que lideram sua área.
+                </div>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon">📈</span>
+                <div class="audience-item-text">
+                    <strong>Líderes de RH, planejamento e estratégia</strong>
+                    Que precisam de contexto real para decisões sobre pessoas e processos.
+                </div>
+            </div>
+            <div class="audience-item">
+                <span class="audience-icon">🎓</span>
+                <div class="audience-item-text">
+                    <strong>Pós-graduados em transição</strong>
+                    Formação consolidada, querendo se posicionar no cenário pós-IA.
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══ PRÉVIA ══ -->
+<section class="section preview-section" id="preview">
+    <div class="section-header fade-in">
+        <span class="section-num">01</span>
+        <h2 class="section-title">Prévia da Edição</h2>
+    </div>
+
+    <div class="news-grid fade-in">
+        <div class="news-card featured">
+            <div>
+                <span class="news-card-tag">Gestão · Destaque</span>
+                <h3 class="news-card-title">Microsoft expande o Copilot para reuniões, emails e relatórios: o que muda no dia a dia do gestor</h3>
+            </div>
+            <div>
+                <p class="news-card-body">O assistente de IA da Microsoft passa a estar integrado em toda a suíte de trabalho. Para gestores, isso significa que tarefas que tomavam horas, como redigir atas, resumir threads e preparar relatórios, podem ser feitas em minutos, sem conhecimento técnico.</p>
+                <span class="news-card-source">Microsoft AI · Produtividade Executiva</span>
+            </div>
+        </div>
+
+        <div class="news-card">
+            <span class="news-card-tag">Decisão</span>
+            <h3 class="news-card-title">HBR: como líderes estão usando IA para tomar decisões com menos viés</h3>
+            <p class="news-card-body">Estudo com executivos mostra que IA reduz decisões baseadas em intuição não fundamentada. O desafio é saber quando confiar no modelo e quando questionar.</p>
+            <span class="news-card-source">Harvard Business Review · Liderança</span>
+        </div>
+
+        <div class="news-card">
+            <span class="news-card-tag">Brasil 🇧🇷</span>
+            <h3 class="news-card-title">Empresas brasileiras aceleram adoção de IA em RH e planejamento estratégico</h3>
+            <p class="news-card-body">Pesquisa aponta crescimento acelerado no uso de ferramentas de IA para seleção, avaliação de desempenho e previsão de cenários. Gestores que já adotaram relatam ganho de tempo e redução de erros.</p>
+            <span class="news-card-source">Exame · Mercado Brasileiro</span>
+        </div>
+
+        <div class="news-card">
+            <span class="news-card-tag">Estratégia</span>
+            <h3 class="news-card-title">McKinsey: líderes que integram IA ao planejamento crescem 3x mais rápido</h3>
+            <p class="news-card-body">Relatório global mostra diferença de desempenho entre organizações que usam IA como ferramenta estratégica e as que ainda tratam como projeto de TI. A vantagem está em quem decide adotar, não em quem sabe programar.</p>
+            <span class="news-card-source">McKinsey & Company · Estratégia Global</span>
+        </div>
+    </div>
+</section>
+
+<!-- ══ COMO FUNCIONA ══ -->
+<section class="section how-section" id="como-funciona">
+    <div class="section-header fade-in">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Como funciona</h2>
+    </div>
+
+    <div class="steps fade-in">
+        <div class="step">
+            <div class="step-number">01</div>
+            <h3 class="step-title">Monitoramento das fontes</h3>
+            <p class="step-body">HBR, McKinsey, MIT Sloan, Deloitte e os blogs das Big Techs são monitorados toda semana. Apenas o que tem base verificável entra no processo.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">02</div>
+            <h3 class="step-title">Curadoria com foco em gestão</h3>
+            <p class="step-body">A IA filtra, traduz e reescreve as notícias em linguagem de liderança. O critério de seleção é sempre o mesmo: o que isso muda para quem decide e gerencia pessoas.</p>
+        </div>
+        <div class="step">
+            <div class="step-number">03</div>
+            <h3 class="step-title">Entrega toda quinta-feira</h3>
+            <p class="step-body">5 minutos de leitura. Notícias com nível de impacto classificado. Link para a fonte original quando quiser se aprofundar. Direto no seu email.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ══ CADASTRO ══ -->
+<section class="register-section" id="cadastro">
+    <h2 class="fade-in">Faça parte agora.</h2>
+    <p class="fade-in">Cadastre-se e receba a newsletter toda quinta. Você também ganha acesso ao grupo de líderes no WhatsApp com 210+ membros.</p>
+
+    <div class="benefits fade-in">
+        <div class="benefit-item">
+            <span class="benefit-icon">📰</span>
+            <span>Newsletter semanal em linguagem de gestão</span>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-icon">💬</span>
+            <span>Grupo ImpulsionAI no WhatsApp</span>
+        </div>
+        <div class="benefit-item">
+            <span class="benefit-icon">🎯</span>
+            <span>Foco em decisão, pessoas e mercado</span>
+        </div>
+    </div>
+
+    <a href="cadastro.html" class="register-btn fade-in">
+        <span>→</span> Quero receber a ImpulsionAI
+    </a>
+    <p class="register-note fade-in">Gratuita. Sem spam. Cancele quando quiser.</p>
+</section>
+
+<!-- ══ ECOSSISTEMA ══ -->
+<section class="eco-section">
+    <div class="eco-inner">
+        <div class="eco-header">
+            <span class="eco-label">Além da newsletter</span>
+            <h2>Um ecossistema para quem quer ir mais fundo.</h2>
+            <p>A ImpulsionAI é parte de um conjunto de ferramentas e programas voltados ao desenvolvimento de líderes no contexto pós-IA.</p>
+        </div>
+        <div class="eco-cards">
+            <div class="eco-card">
+                <span class="eco-card-icon">🎯</span>
+                <h3>Mentoria em IA para gestão</h3>
+                <p>Individual ou em grupo. Uso prático de IA em negócios, planejamento e tomada de decisão.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-card-icon">📊</span>
+                <h3>Dashboards de gestão</h3>
+                <p>Criação de painéis de indicadores com suporte de IA para gestores e equipes estratégicas.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-card-icon">🧠</span>
+                <h3>GRAFOBOT</h3>
+                <p>Parecer Neurocognitivo da Escrita. Mensuração de perfil comportamental com base em análise grafométrica.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-card-icon">💚</span>
+                <h3>Pulsovital</h3>
+                <p>Termômetro de estresse e autocuidado. Para líderes que precisam monitorar o estado das suas equipes.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-card-icon">🏆</span>
+                <h3>Treinamentos e PDIs</h3>
+                <p>Programas de liderança e planos de desenvolvimento individualizados para times em transição.</p>
+            </div>
+            <div class="eco-card">
+                <span class="eco-card-icon">🤖</span>
+                <h3>IAprender</h3>
+                <p>Alfabetização prática em IA. Do básico ao intermediário, para profissionais que querem usar, não apenas acompanhar.</p>
+            </div>
+        </div>
+        <p class="eco-footer-note">
+            Tabula Rasa Consultoria · ImpulsionAI ·
+            <a href="https://www.grafobot.com.br" target="_blank" rel="noopener">grafobot.com.br</a> ·
+            <a href="https://www.pulsovital.com.br" target="_blank" rel="noopener">pulsovital.com.br</a>
+        </p>
+    </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+    <div class="footer-logo">Impulsion<span>AI</span></div>
+    <span class="footer-copy">© 2025 ImpulsionAI · Tabula Rasa Consultoria · Atibaia, SP</span>
+</footer>
+
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
