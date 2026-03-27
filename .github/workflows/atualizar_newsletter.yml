@@ -1,47 +1,39 @@
-# Nome do nosso fluxo de trabalho (automação)
-name: Atualizar Newsletter Semanal
-# Adicionado para dar permissão de escrita ao robô
+name: Atualizar Newsletter ImpulsionAI
+
 permissions:
   contents: write
-# Gatilhos: O que faz a automação rodar?
+
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 * * 1' # Toda segunda-feira às 8h da manhã (horário UTC)
+    - cron: '0 10 * * 4' # Toda quinta-feira às 10h UTC (7h Brasília)
 
-# Tarefas: O que o robô deve fazer?
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      # Passo 1: Baixa o código do seu repositório
       - name: Checkout do código
         uses: actions/checkout@v3
 
-      # Passo 2: Configura o ambiente Python
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.11'
 
-      # Passo 3: Instala as ferramentas (bibliotecas)
       - name: Instalar dependências
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install feedparser requests anthropic
 
-      # Passo 4: Executa o seu script Python para gerar o novo newsletter.html
       - name: Gerar novo arquivo da Newsletter
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python update_newsletter.py
 
-      # --- CORREÇÃO APLICADA AQUI ---
-     # Passo 5: Força a adição do arquivo para o commit
       - name: Adicionar arquivo para commit
         run: git add newsletter.html
 
-      # Passo 6: Faz o commit e push das alterações
       - name: Commit e Push das alterações
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "📰 [Bot] Força atualização da newsletter"
-          # Não especificamos mais o file_pattern, pois já adicionamos o arquivo manualmente
+          commit_message: "📰 [Bot] Newsletter atualizada — $(date '+%d/%m/%Y')"
