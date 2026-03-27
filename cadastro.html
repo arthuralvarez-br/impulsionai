@@ -3,37 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirecionando para Cadastro...</title>
+    <title>Cadastro — ImpulsionAI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); 
-            color: white; 
-            text-align: center; 
-            padding: 50px; 
-            min-height: 100vh; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-direction: column; 
+        :root { --ink: #0a0a0f; --gold: #c9a84c; --white: #ffffff; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--ink);
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 24px;
         }
-        .loading { font-size: 1.5rem; margin-bottom: 20px; }
-        .spinner { border: 4px solid rgba(255,255,255,0.3); border-top: 4px solid white; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 48px;
+        }
+        .logo span { color: var(--gold); }
+        .card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(201,168,76,0.2);
+            border-radius: 6px;
+            padding: 48px 52px;
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+        }
+        .spinner {
+            width: 36px; height: 36px;
+            border: 3px solid rgba(201,168,76,0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin: 0 auto 28px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.45);
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        .manual-link {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.3);
+        }
+        .manual-link a {
+            color: var(--gold);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .manual-link a:hover { border-color: var(--gold); }
+        .back {
+            margin-top: 40px;
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.2);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .back:hover { color: rgba(255,255,255,0.5); }
     </style>
     <script>
-        // Redireciona automaticamente em 2 segundos
         setTimeout(function() {
-            window.location.href = "https://forms.gle/Foun6TZexVv2Bq9E8";
-        }, 2000 );
+            window.location.href = "https://forms.gle/wqHjuEgzmJEaMFfVA";
+        }, 1800);
     </script>
 </head>
 <body>
-    <div>
-        <h1>🚀 ImpulsionAI</h1>
-        <div class="loading">Redirecionando para o cadastro...</div>
+    <div class="logo">Impulsion<span>AI</span></div>
+
+    <div class="card">
         <div class="spinner"></div>
-        <p>Se não redirecionar automaticamente, <a href="https://forms.gle/Foun6TZexVv2Bq9E8" style="color: #FFD700;">clique aqui</a></p>
+        <h1>Abrindo o cadastro...</h1>
+        <p>Você está sendo redirecionado para o formulário de cadastro da ImpulsionAI.</p>
+        <p class="manual-link">
+            Não redirecionou?
+            <a href="https://forms.gle/wqHjuEgzmJEaMFfVA">Clique aqui para abrir.</a>
+        </p>
     </div>
+
+    <a href="index.html" class="back">← Voltar para a página inicial</a>
 </body>
 </html>
