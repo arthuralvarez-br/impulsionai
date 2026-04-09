@@ -112,4 +112,3 @@ if __name__ == "__main__":
         f.write(html_final)
         
     print("Arquivo 'newsletter.html' aprimorado gerado com sucesso!")
-
