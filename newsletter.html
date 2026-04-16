@@ -1,80 +1,192 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletter Atual - ImpulsionAI</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; margin: 0; padding: 20px; }
-        .container { max-width: 800px; margin: 0 auto; background-color: rgba(0, 0, 0, 0.2); padding: 30px; border-radius: 15px; box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37); }
-        header { text-align: center; margin-bottom: 40px; }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        header p { font-size: 1.2rem; color: #ddd; }
-        .newsletter-content h2 { color: #FFD700; border-bottom: 2px solid #FFD700; padding-bottom: 10px; margin-bottom: 20px; }
-        .news-item { margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.2); }
-        .news-item:last-child { border-bottom: none; }
-        .news-item h3 { font-size: 1.4rem; margin-bottom: 10px; }
-        .metadata { display: flex; justify-content: space-between; font-style: italic; color: #ccc; margin-bottom: 15px; font-size: 0.9rem; flex-wrap: wrap; }
-        .news-item p { line-height: 1.6; margin-bottom: 15px; }
-        .read-more-btn { display: inline-block; padding: 8px 15px; background-color: rgba(255, 255, 255, 0.1); color: #FFD700; text-decoration: none; font-weight: bold; border-radius: 5px; transition: background-color 0.3s; }
-        .read-more-btn:hover { background-color: rgba(255, 215, 0, 0.3); }
-        .btn-voltar { display: inline-block; margin-top: 30px; padding: 12px 25px; background-color: #FFD700; color: #333; text-decoration: none; font-weight: bold; border-radius: 8px; transition: transform 0.2s; }
-        .btn-voltar:hover { transform: scale(1.05); }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ImpulsionAI - 16 de April de 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0a0a0f;--paper:#f5f0e8;--gold:#c9a84c;--muted:#6b6b6b;--white:#ffffff;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);}
+header{background:var(--ink);padding:48px 60px;}
+.header-inner{max-width:860px;margin:0 auto;}
+.logo{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:20px;}
+.logo span{color:var(--gold);}
+header h1{font-family:'Playfair Display',serif;font-size:2.3rem;font-weight:900;color:var(--white);line-height:1.15;}
+header h1 em{font-style:italic;color:var(--gold);}
+.edition-info{margin-top:10px;font-size:0.73rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.2);}
+main{max-width:860px;margin:0 auto;padding:54px 60px 96px;}
+.section-label{font-size:0.71rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:500;margin-bottom:34px;padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,0.1);}
+.news-item{padding:26px 22px;margin-bottom:10px;border-radius:3px;}
+.news-meta{display:flex;align-items:center;gap:10px;margin-bottom:10px;flex-wrap:wrap;}
+.news-tag{font-size:0.66rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:500;background:rgba(0,0,0,0.07);color:var(--muted);padding:3px 9px;border-radius:2px;}
+.news-impact{font-size:0.69rem;letter-spacing:0.08em;font-weight:700;text-transform:uppercase;}
+.news-date{font-size:0.71rem;color:rgba(0,0,0,0.26);margin-left:auto;}
+.news-title{font-family:'Playfair Display',serif;font-size:1.22rem;font-weight:700;color:var(--ink);line-height:1.32;margin-bottom:10px;}
+.news-body{font-size:0.88rem;color:var(--muted);line-height:1.72;margin-bottom:16px;}
+.news-footer{display:flex;justify-content:space-between;align-items:center;}
+.news-source{font-size:0.69rem;letter-spacing:0.08em;text-transform:uppercase;color:rgba(0,0,0,0.24);}
+.read-btn{font-size:0.8rem;font-weight:500;color:var(--gold);text-decoration:none;}
+.wa-block{margin-top:54px;background:var(--ink);padding:30px 34px;border-radius:4px;display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;}
+.wa-text h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white);margin-bottom:4px;}
+.wa-text p{font-size:0.8rem;color:rgba(255,255,255,0.36);}
+.wa-btn{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--ink);padding:12px 24px;border-radius:3px;font-size:0.82rem;font-weight:700;text-decoration:none;}
+.editorial{margin-top:48px;padding:36px 40px;background:rgba(0,0,0,0.03);border:1px solid rgba(0,0,0,0.07);border-radius:4px;}
+.editorial-tag{font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);font-weight:600;}
+.editorial-header{margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,0.07);}
+.editorial-text{font-size:0.88rem;color:var(--muted);line-height:1.72;}
+.eco-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0;}
+.eco-item{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--white);border-radius:3px;border:1px solid rgba(0,0,0,0.06);}
+.eco-icon{font-size:1.1rem;flex-shrink:0;margin-top:2px;}
+.eco-content{display:flex;flex-direction:column;gap:3px;}
+.eco-content strong{font-size:0.86rem;color:var(--ink);font-weight:600;}
+.eco-content span{font-size:0.80rem;color:var(--muted);line-height:1.5;}
+.eco-contact{font-size:0.8rem;color:rgba(0,0,0,0.38);margin-top:6px;}
+.eco-contact a{color:var(--gold);text-decoration:none;}
+.back-link{display:inline-block;margin-top:34px;font-size:0.8rem;color:var(--muted);text-decoration:none;}
+footer{background:var(--ink);padding:26px 60px;text-align:center;font-size:0.71rem;color:rgba(255,255,255,0.15);}
+@media(max-width:768px){header,main,footer{padding-left:20px;padding-right:20px;}.eco-grid{grid-template-columns:1fr;}.wa-block{flex-direction:column;}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🚀 ImpulsionAI</h1>
-            <p>Sua newsletter semanal de IA para líderes brasileiros. Atualizada em: 23 de March de 2026</p>
-        </header>
-        <section class="newsletter-content">
-            <h2>Newsletter da Semana</h2>
-            
-        <article class="news-item">
-            <h3>IA Generativa pode adicionar até R$4.4 trilhões à economia global, diz McKinsey</h3>
-            <div class="metadata">
-                <span class="source">Fonte: McKinsey & Company | Estratégia Global</span>
-                <span class="date">Data: 28 de Julho de 2025</span>
-            </div>
-            <p>Novo relatório da McKinsey destaca o potencial transformador da IA generativa, prevendo um impacto econômico massivo...</p>
-            <a href="https://www.mckinsey.com/br/our-insights" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
-        </article>
-        
-        <article class="news-item">
-            <h3>Google DeepMind apresenta 'AlphaFold 3', capaz de mapear todas as moléculas da vida</h3>
-            <div class="metadata">
-                <span class="source">Fonte: Google DeepMind | Inovação Tecnológica</span>
-                <span class="date">Data: 27 de Julho de 2025</span>
-            </div>
-            <p>O AlphaFold 3 representa um salto quântico na biologia computacional, acelerando drasticamente a descoberta de novos medicamentos...</p>
-            <a href="https://deepmind.google/discover/" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
-        </article>
-        
-        <article class="news-item">
-            <h3>Estudo da FGV aponta que 80% das empresas brasileiras pretendem usar IA para cibersegurança</h3>
-            <div class="metadata">
-                <span class="source">Fonte: FGV | Mercado Brasileiro 🇧🇷</span>
-                <span class="date">Data: 26 de Julho de 2025</span>
-            </div>
-            <p>Com o aumento dos ataques cibernéticos, empresas no Brasil estão se voltando para a Inteligência Artificial para prever e neutralizar ameaças...</p>
-            <a href="https://portal.fgv.br/noticias" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
-        </article>
-        
-        <article class="news-item">
-            <h3>Como líderes podem preparar suas equipes para a era da colaboração Humano-IA</h3>
-            <div class="metadata">
-                <span class="source">Fonte: Harvard Business Review | Liderança</span>
-                <span class="date">Data: 25 de Julho de 2025</span>
-            </div>
-            <p>O foco não é mais substituir humanos, mas sim aumentar suas capacidades. O artigo da HBR oferece um framework para gestores...</p>
-            <a href="https://hbr.org/topic/artificial-intelligence" target="_blank" class="read-more-btn">Leia a Matéria Completa &rarr;</a>
-        </article>
-        
-            <div style="text-align: center;">
-                <a href="home.html" class="btn-voltar">⬅️ Voltar para a Página Inicial</a>
-            </div>
-        </section>
-    </div>
+<header>
+<div class="header-inner">
+<div class="logo">Impulsion<span>AI</span></div>
+<h1>IA para quem lidera.<br><em>Edicao de 16 de April de 2026</em></h1>
+<p class="edition-info">Pilar: Uso de Tecnologias Emergentes - Triade da Nova Lideranca - Semanal</p>
+</div>
+</header>
+<main>
+<p class="section-label">O que esta mudando esta semana</p>
+
+<article class="news-item" style="border-left:3px solid #c9a84c;background:rgba(201,168,76,0.10);">
+<div class="news-meta">
+<span class="news-tag">Brasil</span>
+<span class="news-impact" style="color:#c9a84c;">- Alto</span>
+<span class="news-date">15 de April de 2026</span>
+</div>
+<h3 class="news-title">Como fazer um bom prompt e parar de perder tempo com IA</h3>
+<p class="news-body">A maioria das pessoas que usam ferramentas de IA generativa no trabalho ainda não consegue extrair ganhos reais de produtividade por não saber fazer prompts eficazes. Líderes precisam investir em capacitação para que suas equipes maximizem o retorno das ferramentas de IA já disponíveis.</p>
+<div class="news-footer">
+<span class="news-source">Canaltech IA</span>
+<a href="https://canaltech.com.br/inteligencia-artificial/como-fazer-um-bom-prompt-e-parar-de-perder-tempo-com-ia/" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid #c9a84c;background:rgba(201,168,76,0.10);">
+<div class="news-meta">
+<span class="news-tag">Brasil</span>
+<span class="news-impact" style="color:#c9a84c;">- Alto</span>
+<span class="news-date">15 de April de 2026</span>
+</div>
+<h3 class="news-title">Quando nem o vídeo pode provar nada: a crise da prova digital na era da IA</h3>
+<p class="news-body">A IA generativa está criando uma crise de confiabilidade nas provas digitais, incluindo vídeos, impactando processos jurídicos e empresariais. Organizações precisam repensar seus processos de verificação e documentação para manter a credibilidade em evidências digitais.</p>
+<div class="news-footer">
+<span class="news-source">Canaltech IA</span>
+<a href="https://canaltech.com.br/colunas/quando-nem-o-video-pode-provar-nada-a-crise-da-prova-digital-na-era-da-ia/" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid #c9a84c;background:rgba(201,168,76,0.10);">
+<div class="news-meta">
+<span class="news-tag">Pesquisa</span>
+<span class="news-impact" style="color:#c9a84c;">- Alto</span>
+<span class="news-date">16 de April de 2026</span>
+</div>
+<h3 class="news-title">Treating enterprise AI as an operating layer</h3>
+<p class="news-body">Empresas estão descobrindo que o verdadeiro valor da IA não está nos modelos individuais, mas em tratá-la como uma camada operacional estrutural. Líderes devem focar na integração sistêmica da IA nos processos organizacionais, não apenas na adoção de ferramentas isoladas.</p>
+<div class="news-footer">
+<span class="news-source">MIT Technology Review</span>
+<a href="https://www.technologyreview.com/2026/04/16/1135554/treating-enterprise-ai-as-an-operating-layer/" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);">
+<div class="news-meta">
+<span class="news-tag">Pesquisa</span>
+<span class="news-impact" style="color:rgba(255,255,255,0.45);">- Medio</span>
+<span class="news-date">16 de April de 2026</span>
+</div>
+<h3 class="news-title">Making AI operational in constrained public sector environments</h3>
+<p class="news-body">Organizações do setor público enfrentam pressão para acelerar a adoção de IA, mas têm restrições específicas de segurança, governança e operações. Líderes em organizações regulamentadas podem aplicar essas estratégias para implementar IA respeitando compliance e controles rigorosos.</p>
+<div class="news-footer">
+<span class="news-source">MIT Technology Review</span>
+<a href="https://www.technologyreview.com/2026/04/16/1135216/making-ai-operational-in-constrained-public-sector-environments/" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);">
+<div class="news-meta">
+<span class="news-tag">Lancamentos</span>
+<span class="news-impact" style="color:rgba(255,255,255,0.45);">- Medio</span>
+<span class="news-date">16 de January de 2026</span>
+</div>
+<h3 class="news-title">Listen Labs raises $69M after viral billboard hiring stunt to scale AI customer interviews</h3>
+<p class="news-body">Listen Labs levantou US$ 69 milhões para escalar entrevistas automatizadas com clientes usando IA, após estratégia viral de recrutamento. Líderes podem considerar como IA pode automatizar pesquisas de mercado e feedback de clientes, liberando tempo para análise estratégica.</p>
+<div class="news-footer">
+<span class="news-source">VentureBeat AI</span>
+<a href="https://venturebeat.com/technology/listen-labs-raises-usd69m-after-viral-billboard-hiring-stunt-to-scale-ai" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);">
+<div class="news-meta">
+<span class="news-tag">Lancamentos</span>
+<span class="news-impact" style="color:rgba(255,255,255,0.45);">- Medio</span>
+<span class="news-date">19 de January de 2026</span>
+</div>
+<h3 class="news-title">Claude Code costs up to $200 a month. Goose does the same thing for free</h3>
+<p class="news-body">Surge alternativa gratuita ao Claude Code da Anthropic, que custa até US$ 200 mensais para automatizar programação e debugging. Líderes devem avaliar alternativas open-source antes de investir em soluções proprietárias caras, especialmente para automação de processos técnicos.</p>
+<div class="news-footer">
+<span class="news-source">VentureBeat AI</span>
+<a href="https://venturebeat.com/infrastructure/claude-code-costs-up-to-usd200-a-month-goose-does-the-same-thing-for-free" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid rgba(255,255,255,0.45);background:rgba(255,255,255,0.04);">
+<div class="news-meta">
+<span class="news-tag">Brasil</span>
+<span class="news-impact" style="color:rgba(255,255,255,0.45);">- Medio</span>
+<span class="news-date">15 de April de 2026</span>
+</div>
+<h3 class="news-title">Microsoft lança novo modelo de IA super-rápido e baratinho para gerar imagens</h3>
+<p class="news-body">Microsoft lançou modelo de IA rápido e econômico para geração de imagens, democratizando acesso a conteúdo visual automatizado. Líderes podem explorar ferramentas de geração visual para marketing, apresentações e comunicação interna com custos reduzidos.</p>
+<div class="news-footer">
+<span class="news-source">Canaltech IA</span>
+<a href="https://canaltech.com.br/inteligencia-artificial/microsoft-lanca-novo-modelo-de-ia-super-rapido-e-baratinho-para-gerar-imagens/" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<article class="news-item" style="border-left:3px solid rgba(255,255,255,0.22);background:rgba(255,255,255,0.02);">
+<div class="news-meta">
+<span class="news-tag">Microsoft</span>
+<span class="news-impact" style="color:rgba(255,255,255,0.22);">- Observar</span>
+<span class="news-date">12 de October de 2022</span>
+</div>
+<h3 class="news-title">From Hot Wheels to handling content: How brands are using Microsoft AI to be more productive and imaginative</h3>
+<p class="news-body">Marcas como Hot Wheels estão usando IA da Microsoft para aumentar produtividade e criatividade na criação de conteúdo. Líderes podem aplicar essas estratégias para otimizar processos criativos e de conteúdo em suas organizações, melhorando eficiência das equipes de marketing.</p>
+<div class="news-footer">
+<span class="news-source">Microsoft AI</span>
+<a href="https://blogs.microsoft.com/ai/from-hot-wheels-to-handling-content-how-brands-are-using-microsoft-ai-to-be-more-productive-and-imaginative/" target="_blank" rel="noopener" class="read-btn">Leia a materia completa</a>
+</div>
+</article>
+<div class="wa-block">
+<div class="wa-text">
+<h3>Grupo ImpulsionAI no WhatsApp</h3>
+<p>210+ lideres. Discussoes praticas sobre IA em gestao e decisao.</p>
+</div>
+<a href="https://chat.whatsapp.com/GcnYSlUkcE0K3utFJgx9nz" target="_blank" class="wa-btn">Entrar no grupo</a>
+</div>
+<div class="editorial">
+<div class="editorial-header"><span class="editorial-tag">Da redacao</span></div>
+<p class="editorial-text">O que voce leu esta semana e parte do pilar <strong>Uso de Tecnologias Emergentes</strong> da Triade da Nova Lideranca. Entender o cenario e o primeiro passo. O segundo e saber como aplicar isso a sua realidade, a sua equipe e as suas decisoes.</p>
+<p class="editorial-text" style="margin-top:10px;">Se voce sente que precisa ir alem da leitura, o ecossistema ImpulsionAI oferece caminhos concretos.</p>
+<div class="eco-grid">
+<div class="eco-item"><span class="eco-icon">🎯</span><div class="eco-content"><strong>Mentoria individual e em grupo</strong><span>Uso de IA aplicado a sua gestao, negocios e planejamento.</span></div></div>
+<div class="eco-item"><span class="eco-icon">📊</span><div class="eco-content"><strong>Dashboards de gestao com IA</strong><span>Paineis para decisao, RH e acompanhamento estrategico.</span></div></div>
+<div class="eco-item"><span class="eco-icon">🧠</span><div class="eco-content"><strong>GRAFOBOT</strong><span>Parecer Neurocognitivo da Escrita para mensuracao de perfil comportamental.</span></div></div>
+<div class="eco-item"><span class="eco-icon">💚</span><div class="eco-content"><strong>Pulsovital</strong><span>Termometro de estresse e autocuidado para lideres e equipes.</span></div></div>
+<div class="eco-item"><span class="eco-icon">🏆</span><div class="eco-content"><strong>Treinamentos e PDIs</strong><span>Programas de desenvolvimento personalizados para times.</span></div></div>
+<div class="eco-item"><span class="eco-icon">🤖</span><div class="eco-content"><strong>IAprender</strong><span>Alfabetizacao pratica em IA para profissionais que querem usar.</span></div></div>
+</div>
+<p class="eco-contact">Quer conversar? <a href="https://www.grafobot.com.br">grafobot.com.br</a> - <a href="https://www.pulsovital.com.br">pulsovital.com.br</a></p>
+</div>
+<a href="index.html" class="back-link">Voltar para a pagina inicial</a>
+</main>
+<footer>ImpulsionAI - Tabula Rasa Consultoria - Atibaia, SP - 16 de April de 2026</footer>
 </body>
 </html>
