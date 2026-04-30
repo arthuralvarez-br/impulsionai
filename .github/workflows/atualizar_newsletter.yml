@@ -14,6 +14,8 @@ jobs:
     steps:
       - name: Checkout do código
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Configurar Python
         uses: actions/setup-python@v4
@@ -32,10 +34,11 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
         run: python update_newsletter.py
 
-      - name: Adicionar arquivo para commit
-        run: git add newsletter.html
-
-      - name: Commit e Push das alterações
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Newsletter atualizada e enviada"
+      - name: Commit e Push da newsletter
+        run: |
+          git config user.name "ImpulsionAI Bot"
+          git config user.email "arthuralvarezdesouza@gmail.com"
+          git pull --rebase origin main
+          git add newsletter.html
+          git diff --cached --quiet || git commit -m "Newsletter atualizada e enviada"
+          git push origin main
