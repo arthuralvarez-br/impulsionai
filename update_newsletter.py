@@ -1,15 +1,9 @@
 """
 update_newsletter.py
-ImpulsionAI — Coleta via RSS + curadoria com Claude API
-
-Publico: lideres de 35 a 65 anos, gestores, profissionais liberais, autonomos.
-NAO sao de TI. Precisam entender o impacto da IA em gestao, decisao e pessoas.
-
-Uso:
-    ANTHROPIC_API_KEY=sk-... python update_newsletter.py
+ImpulsionAI — Coleta RSS + curadoria Claude API + envio via Brevo
 
 Dependencias:
-    pip install feedparser requests anthropic
+    pip install feedparser requests anthropic google-auth google-auth-httplib2 google-api-python-client sib-api-v3-sdk
 """
 
 import feedparser
@@ -17,6 +11,7 @@ import datetime
 import os
 import json
 import anthropic
+import requests
 
 FONTES = [
     {"nome": "Harvard Business Review", "url": "https://hbr.org/topic/artificial-intelligence.rss", "categoria": "Lideranca", "idioma": "en", "grupo": "A"},
@@ -36,6 +31,9 @@ FONTES = [
 
 MAX_POR_FONTE = 3
 MAX_TOTAL = 8
+SPREADSHEET_ID = "1awi0TQ_zVEmt0bnr3z2O3OsEf_mJ-dOB8g333saOy54"
+SHEET_NAME = "Form_Responses"
+EMAIL_COLUNA = 2  # Coluna B
 
 
 def coletar_rss():
@@ -135,6 +133,83 @@ def curar_com_ia(artigos):
     return curados[:MAX_TOTAL]
 
 
+def buscar_emails_planilha():
+    """Busca emails da planilha Google Sheets via API."""
+    try:
+        from google.oauth2 import service_account
+        from googleapiclient.discovery import build
+
+        creds_json = os.environ.get("GOOGLE_CREDENTIALS")
+        if not creds_json:
+            print("  [AVISO] GOOGLE_CREDENTIALS nao definido. Pulando envio por email.")
+            return []
+
+        creds_dict = json.loads(creds_json)
+        scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
+        creds = service_account.Credentials.from_service_account_info(creds_dict, scopes=scopes)
+        service = build("sheets", "v4", credentials=creds)
+
+        resultado = service.spreadsheets().values().get(
+            spreadsheetId=SPREADSHEET_ID,
+            range=f"{SHEET_NAME}!B2:C1000"
+        ).execute()
+
+        valores = resultado.get("values", [])
+        emails = []
+        for row in valores:
+            if row and len(row) >= 1:
+                email = row[0].strip()
+                nome = row[1].strip() if len(row) > 1 else "Lider"
+                if "@" in email:
+                    emails.append({"email": email, "nome": nome})
+
+        print(f"  Encontrados {len(emails)} emails na planilha.")
+        return emails
+
+    except Exception as e:
+        print(f"  [ERRO] Falha ao buscar emails: {e}")
+        return []
+
+
+def enviar_via_brevo(html_newsletter, data_hoje, emails):
+    """Envia a newsletter para todos os emails via Brevo API."""
+    brevo_key = os.environ.get("BREVO_API_KEY")
+    if not brevo_key:
+        print("  [AVISO] BREVO_API_KEY nao definido. Pulando envio.")
+        return
+
+    if not emails:
+        print("  [AVISO] Nenhum email para enviar.")
+        return
+
+    url = "https://api.brevo.com/v3/smtp/email"
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "api-key": brevo_key
+    }
+
+    destinatarios = [{"email": e["email"], "name": e["nome"]} for e in emails]
+
+    payload = {
+        "sender": {
+            "name": "ImpulsionAI",
+            "email": "arthuralvarezdesouza@gmail.com"
+        },
+        "to": destinatarios,
+        "subject": f"ImpulsionAI — IA para quem lidera | {data_hoje}",
+        "htmlContent": html_newsletter
+    }
+
+    print(f"  Enviando newsletter para {len(destinatarios)} pessoas via Brevo...")
+    resposta = requests.post(url, headers=headers, json=payload)
+
+    if resposta.status_code in [200, 201]:
+        print("  Newsletter enviada com sucesso.")
+    else:
+        print(f"  [ERRO] Falha no envio: {resposta.status_code} — {resposta.text}")
+
+
 IMPACTO_CONFIG = {
     "Alto": {"cor": "#c9a84c", "bg": "rgba(201,168,76,0.10)"},
     "Medio": {"cor": "rgba(255,255,255,0.45)", "bg": "rgba(255,255,255,0.04)"},
@@ -146,7 +221,7 @@ def normalizar_impacto(raw):
     r = raw.lower()
     if "alto" in r:
         return "Alto"
-    if "medio" in r or "medio" in r:
+    if "medio" in r or "médio" in r:
         return "Medio"
     return "Observar"
 
@@ -221,7 +296,6 @@ main{max-width:860px;margin:0 auto;padding:54px 60px 96px;}
 .eco-content span{font-size:0.80rem;color:var(--muted);line-height:1.5;}
 .eco-contact{font-size:0.8rem;color:rgba(0,0,0,0.38);margin-top:6px;}
 .eco-contact a{color:var(--gold);text-decoration:none;}
-.back-link{display:inline-block;margin-top:34px;font-size:0.8rem;color:var(--muted);text-decoration:none;}
 footer{background:var(--ink);padding:26px 60px;text-align:center;font-size:0.71rem;color:rgba(255,255,255,0.15);}
 @media(max-width:768px){header,main,footer{padding-left:20px;padding-right:20px;}.eco-grid{grid-template-columns:1fr;}.wa-block{flex-direction:column;}}
 </style>
@@ -258,22 +332,27 @@ footer{background:var(--ink);padding:26px 60px;text-align:center;font-size:0.71r
 </div>
 <p class="eco-contact">Quer conversar? <a href="https://www.grafobot.com.br">grafobot.com.br</a> - <a href="https://www.pulsovital.com.br">pulsovital.com.br</a></p>
 </div>
-<a href="index.html" class="back-link">Voltar para a pagina inicial</a>
 </main>
 <footer>ImpulsionAI - Tabula Rasa Consultoria - Atibaia, SP - """ + data_hoje + """</footer>
 </body>
 </html>"""
-    return html
+    return html, data_hoje
 
 
 def main():
     print("-- ImpulsionAI: atualizando newsletter --")
+
     artigos = coletar_rss()
     curados = curar_com_ia(artigos)
-    html = gerar_html(curados)
+    html, data_hoje = gerar_html(curados)
+
     with open("newsletter.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("  newsletter.html gerado com sucesso.")
+
+    emails = buscar_emails_planilha()
+    enviar_via_brevo(html, data_hoje, emails)
+
     print("-- Concluido. --")
 
 
